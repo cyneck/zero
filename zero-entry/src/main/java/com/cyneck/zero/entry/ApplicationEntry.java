@@ -7,7 +7,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @SpringBootApplication
-@MapperScan("com.cyneck.zero.entry.dao")
+@MapperScan("com.cyneck.zero.*.dao")
 public class ApplicationEntry {
     public static void main(String[] args) {
         SpringApplication.run(ApplicationEntry.class, args);
