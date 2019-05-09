@@ -7,7 +7,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -57,9 +56,9 @@ public class UserController {
             @ApiImplicitParam(name = "user", value = "用户实体user", required = true, dataType = "User")
     })
     @RequestMapping(value = "user/{id}", method = RequestMethod.POST)
-    public User getUser(@PathVariable("id") String id,
-                        @RequestBody() User user) {
+    public List<User> getUser(@PathVariable("id") String id,
+                              @RequestBody() User user) {
         List<User> userList = userDao.selectUserList();
-        return user;
+        return userList;
     }
 }
