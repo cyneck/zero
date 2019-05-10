@@ -1,11 +1,11 @@
-package com.cyneck.zero.common.utils;
+package com.cyneck.zero.common.util;
 
 import java.sql.*;
 
 /**
  * @author Eric Lee
  * @version v1.0.0
- * @Package : com.cyneck.zero.utils
+ * @Package : com.cyneck.zero.common.util
  * @Description : TODO
  * @Create on : 2019/5/8 15:57
  **/
@@ -13,11 +13,11 @@ public class DBUtil {
 
     static String user = "root";
     static String password = "root";
-    static String url = "jdbc:mysql://localhost:3306/test?serverTimezone=UTC";
+    static String url = "jdbc:mysql://localhost:3306/mydb?serverTimezone=UTC";
 
     static {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

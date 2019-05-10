@@ -1,6 +1,6 @@
 package com.cyneck.zero.entry.dao.common;
 
-import com.cyneck.zero.common.utils.DBUtil;
+import com.cyneck.zero.common.util.DBUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
