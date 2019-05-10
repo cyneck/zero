@@ -1,5 +1,6 @@
 package com.cyneck.zero.entry.controller;
 
+import com.cyneck.zero.common.model.ApiResponse;
 import com.cyneck.zero.entry.dao.UserDao;
 import com.cyneck.zero.entry.dao.UserMapper;
 import com.cyneck.zero.entry.model.User;
@@ -34,9 +35,10 @@ public class UserController {
     private UserMapper userMapper;
 
     @ApiOperation(value = "", notes = "异常测试")
-    @ApiImplicitParam(name = "test", value = "---", required = false)
     @RequestMapping(value = "test", method = RequestMethod.GET)
-    public String test() {
+    public ApiResponse test() {
+
+        String aaa = "123";
         throw new NullPointerException();
     }
 

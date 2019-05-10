@@ -2,8 +2,6 @@ package com.cyneck.zero.entry.model;
 
 import lombok.Data;
 
-import java.math.BigInteger;
-
 /**
  * @author Eric Lee
  * @version v1.0.0
