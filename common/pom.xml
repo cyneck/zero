@@ -43,6 +43,12 @@
             <version>1.2.31</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.github.jsqlparser</groupId>
+            <artifactId>jsqlparser</artifactId>
+            <version>1.2</version>
+        </dependency>
+
         <!--单元测试-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -72,12 +78,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
             <version>1.0.23</version>
-        </dependency>
-        <!--mybatis-spring-boot集成-->
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.0.1</version>
         </dependency>
 
         <dependency>

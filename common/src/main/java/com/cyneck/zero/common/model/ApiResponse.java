@@ -10,8 +10,18 @@ import lombok.Data;
  * @Create on : 2019/5/8 15:37
  **/
 @Data()
-public class ApiResponse {
+public class ApiResponse<T> {
     private String code;
     private String message;
     private String state;
+    private T data;
+
+    public ApiResponse() {
+    }
+
+    public ApiResponse(String state, String code, String msg) {
+        this.state = state;
+        this.code = code;
+        this.message = msg;
+    }
 }
