@@ -14,6 +14,7 @@ import java.util.List;
  * @Create on : 2019/5/9 09:01
  **/
 
+@Mapper
 public interface UserDao {
     int insert(@Param("user") User user);
 
