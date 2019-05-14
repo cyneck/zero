@@ -1,6 +1,6 @@
 package com.cyneck.zero.entry.filter;
 
-import com.cyneck.zero.common.filter.PageFilter;
+import com.cyneck.zero.common.filter.JwtFilter;
 
 /**
  * @author Eric Lee
@@ -9,5 +9,5 @@ import com.cyneck.zero.common.filter.PageFilter;
  * @Description : TODO
  * @Create on : 2019/5/13 13:26
  **/
-public class MyFilter extends PageFilter {
+public class MyFilter extends JwtFilter {
 }

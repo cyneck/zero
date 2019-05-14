@@ -6,7 +6,6 @@ import com.cyneck.zero.entry.dao.UserMapper;
 import com.cyneck.zero.entry.model.User;
 import com.cyneck.zero.entry.model.condition.UserCondition;
 import com.cyneck.zero.entry.service.UserService;
-import com.github.pagehelper.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -27,7 +26,7 @@ import java.util.List;
  * @Description : 用户控制器
  * @Create on : 2019/5/9 08:55
  **/
-@Api(description = "Zero 接口文档", tags = "Zero", value = "Zero API")
+@Api(value = "用户",description= "UserController")
 @RestController
 @RequestMapping(value = "/home/*")
 public class UserController {

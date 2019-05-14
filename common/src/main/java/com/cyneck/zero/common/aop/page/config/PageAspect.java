@@ -43,11 +43,15 @@ public class PageAspect {
         for (Object object : arguments) {
             if (object instanceof BaseCondition) {
                 condition = (BaseCondition) object;
+                break;
             }
         }
-        PageHelper.startPage(condition);
+
         /*获得 request */
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+
+        PageHelper.startPage(condition.getPageNum(),condition.getPageSize());
+
     }
 
     /**
@@ -85,6 +89,44 @@ public class PageAspect {
     @After("PageAnnotation()")
     public void after(JoinPoint jp) {
         System.out.println("方法最后执行.....");
+    }
+
+
+    /**
+     * 获得pager.offset参数的值
+     *
+     * @param request
+     * @return
+     */
+    protected int getPageNum(HttpServletRequest request) {
+        int pageNum = 1;
+        try {
+            String pageNums = request.getParameter("pageNum");
+            if (pageNums != null) {
+                pageNum = Integer.parseInt(pageNums);
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return pageNum;
+    }
+
+    /**
+     * 设置默认每页大小
+     *
+     * @return
+     */
+    protected int getPageSize(HttpServletRequest request) {
+        int pageSize = 10;    // 默认每页10条记录
+        try {
+            String pageSizes = request.getParameter("pageSize");
+            if (pageSizes != null) {
+                pageSize = Integer.parseInt(pageSizes);
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return pageSize;
     }
 
 }

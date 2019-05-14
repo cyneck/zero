@@ -3,6 +3,7 @@ package com.cyneck.zero.common.config;
 import com.github.pagehelper.PageHelper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.util.Properties;
 
@@ -13,6 +14,7 @@ import java.util.Properties;
  * @Description : 配置分页插件pageHelper
  * @Create on : 2019/5/13 11:44
  **/
+@Component
 @Configuration
 public class PageHelperConfig {
 

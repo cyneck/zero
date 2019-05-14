@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.cyneck.zero.entry.dao.UserDao">
 
-    <resultMap id="BaseResultMap" type="com.cyneck.zero.entry.model.User">
+    <resultMap id="ResultMap" type="com.cyneck.zero.entry.model.User">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
     </resultMap>
@@ -16,7 +16,7 @@
         insert into user(name) values (#{user.name})
     </insert>
 
-    <select id="selectUserList" resultMap="BaseResultMap" resultType="com.cyneck.zero.entry.model.User">
+    <select id="selectUserList" resultMap="ResultMap" resultType="com.cyneck.zero.entry.model.User">
         select * from user
     </select>
 

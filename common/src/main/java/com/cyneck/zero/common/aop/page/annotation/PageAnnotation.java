@@ -14,6 +14,4 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PageAnnotation {
     Class clazz();//类型
-
-    String des() default "描述";//描述
 }

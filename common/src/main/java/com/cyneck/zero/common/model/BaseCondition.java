@@ -14,4 +14,7 @@ import lombok.Data;
 public class BaseCondition {
     private int pageNum;    // 第几页
     private int pageSize;    // 每页记录数
+
+    private String orderField;
+    private String orderDirection;
 }

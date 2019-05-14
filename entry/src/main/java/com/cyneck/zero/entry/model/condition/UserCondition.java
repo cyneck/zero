@@ -1,5 +1,6 @@
 package com.cyneck.zero.entry.model.condition;
 
+import com.cyneck.zero.common.model.BaseCondition;
 import lombok.Data;
 
 /**
@@ -10,12 +11,6 @@ import lombok.Data;
  * @Create on : 2019/5/13 14:39
  **/
 @Data
-public class UserCondition {
+public class UserCondition extends BaseCondition {
     private String name;
-
-    private int pageNum;
-    private int pageSize;
-
-    private String orderField;
-    private String orderDirection;
 }

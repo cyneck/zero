@@ -34,9 +34,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @PageAnnotation(clazz = User.class, des = "用户")
+    @PageAnnotation(clazz = User.class)
     public PageEntity<User> getPageByCondition(UserCondition condition) {
-//        Page page = PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
+        // 用注解的方式实现了下面一行该代码
+        // Page page = PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
         List list = userMapper.getUserPage(condition);
         return new PageEntity<User>(list);
     }
