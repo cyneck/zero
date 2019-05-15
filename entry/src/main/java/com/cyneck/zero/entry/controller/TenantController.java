@@ -6,6 +6,7 @@ import com.cyneck.zero.entry.model.pojo.Tenant;
 import com.cyneck.zero.entry.service.TenantService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,10 +29,24 @@ public class TenantController {
     @Resource
     TenantService tenantService;
 
+    @ApiOperation(value = "addTenant", notes = "新增租户")
+    @RequestMapping(value = "addTenant", method = RequestMethod.POST)
+    public ApiResponse addTenant(@RequestBody Tenant tenant) {
+        int num = tenantService.addTenant(tenant);
+        return ApiResponse.Success(num);
+    }
+
+    @ApiOperation(value = "updateTenant", notes = "修改租户信息")
+    @RequestMapping(value = "updateTenant", method = RequestMethod.POST)
+    public ApiResponse updateTenant(@RequestBody Tenant tenant) {
+        int num = tenantService.modifyTenant(tenant);
+        return ApiResponse.Success(num);
+    }
+
 
     @ApiOperation(value = "getList", notes = "获取列表")
     @RequestMapping(value = "getList", method = RequestMethod.POST)
-    public ApiResponse getList(TenantCondition condition) {
+    public ApiResponse getList(@RequestBody TenantCondition condition) {
         List<Tenant> tenantList = tenantService.getTenantList(condition);
         return ApiResponse.Success(tenantList);
     }
@@ -43,17 +58,4 @@ public class TenantController {
         return ApiResponse.Success(tenant);
     }
 
-    @ApiOperation(value = "addTenant", notes = "新增租户")
-    @RequestMapping(value = "addTenant", method = RequestMethod.POST)
-    public ApiResponse addTenant(Tenant tenant) {
-        int num = tenantService.addTenant(tenant);
-        return ApiResponse.Success(num);
-    }
-
-    @ApiOperation(value = "updateTenant", notes = "修改租户信息")
-    @RequestMapping(value = "updateTenant", method = RequestMethod.POST)
-    public ApiResponse updateTenant(Tenant tenant) {
-        int num = tenantService.modifyTenant(tenant);
-        return ApiResponse.Success(num);
-    }
 }

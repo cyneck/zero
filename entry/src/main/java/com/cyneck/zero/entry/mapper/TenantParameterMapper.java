@@ -3,11 +3,8 @@ package com.cyneck.zero.entry.mapper;
 import com.cyneck.zero.entry.model.pojo.TenantParameter;
 import com.cyneck.zero.entry.model.pojo.TenantParameterExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-@Mapper
 public interface TenantParameterMapper {
     int deleteByExample(TenantParameterExample example);
 

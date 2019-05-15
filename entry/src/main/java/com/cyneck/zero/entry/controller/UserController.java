@@ -1,8 +1,8 @@
 package com.cyneck.zero.entry.controller;
 
 import com.cyneck.zero.common.model.PageEntity;
+import com.cyneck.zero.entry.dao.UserAnoDao;
 import com.cyneck.zero.entry.dao.UserDao;
-import com.cyneck.zero.entry.dao.UserMapper;
 import com.cyneck.zero.entry.model.User;
 import com.cyneck.zero.entry.model.condition.UserCondition;
 import com.cyneck.zero.entry.service.UserService;
@@ -26,7 +26,7 @@ import java.util.List;
  * @Description : 用户控制器
  * @Create on : 2019/5/9 08:55
  **/
-@Api(value = "用户",description= "UserController")
+@Api(value = "用户", description = "UserController")
 @RestController
 @RequestMapping(value = "/home/*")
 public class UserController {
@@ -35,7 +35,7 @@ public class UserController {
     private UserDao userDao;
 
     @Resource
-    private UserMapper userMapper;
+    private UserAnoDao userAnoDao;
 
     @Resource
     UserService userService;
@@ -47,12 +47,12 @@ public class UserController {
     }
 
 
-    @ApiOperation(value = "index", notes = "简单SpringMVC请求")
-    @RequestMapping(value = "index", method = RequestMethod.GET)
-    public List<User> index(HttpServletResponse response,
+    @ApiOperation(value = "getAll", notes = "简单SpringMVC请求")
+    @RequestMapping(value = "getAll", method = RequestMethod.GET)
+    public List<User> getAll(HttpServletResponse response,
                             @RequestParam(name = "id", required = false)
                             @NotBlank(message = "id不能为空") String id) {
-        List<User> userList = userMapper.getAll();
+        List<User> userList = userAnoDao.getAll();
         return userList;
     }
 

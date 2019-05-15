@@ -22,7 +22,6 @@ import java.util.List;
 @Service
 public class TenantServiceImpl implements TenantService {
 
-
     @Resource
     TenantMapper tenantMapper;
 
@@ -40,6 +39,7 @@ public class TenantServiceImpl implements TenantService {
 
     @Override
     public int modifyTenant(Tenant tenant) {
+
         return tenantMapper.updateByPrimaryKey(tenant);
     }
 

@@ -18,8 +18,6 @@ public interface TenantMapper {
 
     int insertSelective(Tenant record);
 
-    List<Tenant> selectByCondition(TenantCondition condition);
-
     List<Tenant> selectByExample(TenantExample example);
 
     Tenant selectByPrimaryKey(String tenantId);
@@ -31,4 +29,6 @@ public interface TenantMapper {
     int updateByPrimaryKeySelective(Tenant record);
 
     int updateByPrimaryKey(Tenant record);
+
+    List<Tenant> selectByCondition(TenantCondition condition);
 }

@@ -1,8 +1,9 @@
 package com.cyneck.zero.entry.dao;
 
 import com.cyneck.zero.entry.model.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import com.cyneck.zero.entry.model.condition.UserCondition;
+import com.github.pagehelper.Page;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -16,8 +17,10 @@ import java.util.List;
 
 @Mapper
 public interface UserDao {
-    int insert(@Param("user") User user);
+
+    int addUser(@Param("user") User user);
 
     List<User> selectUserList();
+
 }
 

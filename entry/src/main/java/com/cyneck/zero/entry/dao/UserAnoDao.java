@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.type.Alias;
 
 import java.util.List;
 
@@ -15,12 +14,11 @@ import java.util.List;
  * @author Eric Lee
  * @version v1.0.0
  * @Package : com.cyneck.zero.entry.dao
- * @Description : mybatis-spring-boot注解写法
- * @Create on : 2019/5/9 10:53
+ * @Description : 注解方式mybatis操作
+ * @Create on : 2019/5/15 16:47
  **/
-
-@Alias("daoUserMapper")
-public interface UserMapper extends BaseMapper<User> {
+//启动类中已添加扫包，可以不写@Mapper
+public interface UserAnoDao extends BaseMapper<User> {
 
     @Select("insert into user (name) values (#{name})")
     int insertUser(User user);
@@ -37,5 +35,4 @@ public interface UserMapper extends BaseMapper<User> {
     @Select("SELECT * FROM user order by #{orderField} #{orderDirection}")
     @ResultType(value = User.class)
     Page<User> getUserPage(UserCondition condition);
-
 }

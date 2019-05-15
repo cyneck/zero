@@ -76,7 +76,8 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.0.1</version>
+            <!--修改版本。修复The alias 'Criterion' is already mapped to the value 'com.xxx.domain.def.GameListExample$Criterion'的问题-->
+            <version>2.0.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/tk.mybatis/mapper-spring-boot-starter -->
