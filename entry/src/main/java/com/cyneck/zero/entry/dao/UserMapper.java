@@ -2,6 +2,7 @@ package com.cyneck.zero.entry.dao;
 
 import com.cyneck.zero.entry.model.User;
 import com.cyneck.zero.entry.model.condition.UserCondition;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Results;
@@ -32,6 +33,6 @@ public interface UserMapper extends BaseMapper<User> {
 
     @Select("SELECT * FROM user order by #{orderField} #{orderDirection}")
     @ResultType(value = User.class)
-    List<User> getUserPage(UserCondition condition);
+    Page<User> getUserPage(UserCondition condition);
 
 }

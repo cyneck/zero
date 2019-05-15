@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     public PageEntity<User> getPageByCondition(UserCondition condition) {
         // 用注解的方式实现了下面一行该代码
         // Page page = PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
-        List list = userMapper.getUserPage(condition);
+        Page<User> list = userMapper.getUserPage(condition);
         return new PageEntity<User>(list);
     }
 
