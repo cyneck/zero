@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.type.Alias;
 
 import java.util.List;
 
@@ -17,6 +18,8 @@ import java.util.List;
  * @Description : mybatis-spring-boot注解写法
  * @Create on : 2019/5/9 10:53
  **/
+
+@Alias("daoUserMapper")
 public interface UserMapper extends BaseMapper<User> {
 
     @Select("insert into user (name) values (#{name})")

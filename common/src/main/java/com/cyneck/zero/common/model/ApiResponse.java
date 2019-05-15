@@ -24,4 +24,30 @@ public class ApiResponse<T> {
         this.code = code;
         this.message = msg;
     }
+
+    public ApiResponse(String code, String msg) {
+        this.code = code;
+        this.message = msg;
+    }
+
+    public ApiResponse(String msg) {
+
+        this.message = msg;
+    }
+
+    public ApiResponse(T data) {
+        this.data = data;
+    }
+
+    public static ApiResponse Success(Object data) {
+        ApiResponse response = new ApiResponse("success");
+        response.data = data;
+        return response;
+    }
+
+    public static ApiResponse Fail(String msg) {
+        ApiResponse response = new ApiResponse("fail");
+        response.message = msg;
+        return response;
+    }
 }

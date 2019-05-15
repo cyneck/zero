@@ -14,10 +14,46 @@
         <!-- 生成的实体Bean,将实现Serializable -->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
 
-        <commentGenerator>
+        <!-- 配置生成pojo的toString()方法的插件，mybatis支持很多插件，这些插件都在 org.mybatis.generator.plugins包下 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
+        <!-- 自定义物理分页  可生成支持Mysql数据的limit  不支持Oracle -->
+        <!--<plugin type="org.mybatis.generator.plugins.page.PaginationPlugin" />-->
+
+        <!-- 开启支持内存分页   可生成 支持内存分布的方法及参数 -->
+        <!--<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin" />-->
+
+        <!-- generate entity时，生成hashcode和equals方法 -->
+        <!--<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />-->
+
+        <!-- 此处是将Example改名为Criteria 当然 想改成什么都行~    -->
+        <!--<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">-->
+        <!--<property name="searchString" value="Example$" />-->
+        <!--<!– 替换后  -->
+        <!--<property name="replaceString" value="Criteria" />    -->
+        <!--–>-->
+        <!--<property name="replaceString" value="Query" />-->
+        <!--</plugin>-->
+        <!-- 此处是将UserMapper.xml改名为UserDao.xml 当然 想改成什么都行~ -->
+        <!--<plugin type="org.mybatis.generator.plugins.rename.RenameSqlMapperPlugin">-->
+        <!--<property name="searchString" value="Mapper" />-->
+        <!--<property name="replaceString" value="Dao" />-->
+        <!--</plugin>-->
+
+        <!--<!– 此处是将UserMapper改名为UserDao 接口 当然 想改成什么都行~  –>-->
+        <!--<plugin type="org.mybatis.generator.plugins.rename.RenameJavaMapperPlugin">-->
+        <!--<property name="searchString" value="Mapper$" />-->
+        <!--<property name="replaceString" value="Dao" />-->
+        <!--</plugin>-->
+
+        <!-- 注释生成-->
+        <commentGenerator type="org.mybatis.generator.internal.DefaultCommentGenerator">
             <!-- 是否去除自动生成的注释 true：是; false:否 -->
             <property name="suppressAllComments" value="true"/>
+            <!--生成的注释包含时间戳-->
+            <property name="suppressDate" value="true"/>
         </commentGenerator>
+
 
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
         <jdbcConnection driverClass="${jdbc.driver}"
@@ -35,6 +71,12 @@
         <!-- targetProject:生成PO类的位置 -->
         <javaModelGenerator targetPackage="com.cyneck.zero.entry.model.pojo"
                             targetProject="src/main/java">
+            <!-- 是否对model添加 构造函数 -->
+            <property name="constructorBased" value="true"/>
+            <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 给Model添加一个父类 -->
+            <property name="rootClass" value="com.cyneck.zero.common.model.BaseEntity"/>
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="true"/>
             <!-- 从数据库返回的值被清理前后的空格 -->
@@ -61,8 +103,23 @@
 
         <!-- 指定数据库表 -->
         <!--生成对应表及类名-->
-        <!-- tableName:表名;domainObjectName:实体类名-->
-        <table tableName="user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <!-- tableName:表名;domainObjectName:实体类名(在property总设置name="useActualColumnNames" value="true"，可以自动实现下划线驼峰命名)-->
+        <table tableName="tenant"
+               enableCountByExample="false" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+            <!-- <generatedKey column="ID" sqlStatement="oracle" identity="true" /> -->
+        </table>
+        <table tableName="tenant_config"
+               enableCountByExample="false" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <table tableName="tenant_parameter"
+               enableCountByExample="false" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true" selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+
     </context>
 </generatorConfiguration>
