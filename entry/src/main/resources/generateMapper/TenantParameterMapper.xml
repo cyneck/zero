@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyneck.zero.entry.mapper.TenantParameterMapper">
+  <resultMap id="BaseResultMap" type="com.cyneck.zero.entry.model.pojo.TenantParameter">
+    <constructor>
+      <idArg column="tenant_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="read_decimal_digit" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="settle_model" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="api_url" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="business_model" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="alarm_frequency" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    tenant_ID, read_decimal_digit, settle_model, api_url, business_model, alarm_frequency
+  </sql>
+  <select id="selectByExample" parameterType="com.cyneck.zero.entry.model.pojo.TenantParameterExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from tenant_parameter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tenant_parameter
+    where tenant_ID = #{tenantId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tenant_parameter
+    where tenant_ID = #{tenantId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cyneck.zero.entry.model.pojo.TenantParameterExample">
+    delete from tenant_parameter
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cyneck.zero.entry.model.pojo.TenantParameter">
+    insert into tenant_parameter (tenant_ID, read_decimal_digit, settle_model, 
+      api_url, business_model, alarm_frequency
+      )
+    values (#{tenantId,jdbcType=VARCHAR}, #{readDecimalDigit,jdbcType=VARCHAR}, #{settleModel,jdbcType=VARCHAR}, 
+      #{apiUrl,jdbcType=VARCHAR}, #{businessModel,jdbcType=VARCHAR}, #{alarmFrequency,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cyneck.zero.entry.model.pojo.TenantParameter">
+    insert into tenant_parameter
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="tenantId != null">
+        tenant_ID,
+      </if>
+      <if test="readDecimalDigit != null">
+        read_decimal_digit,
+      </if>
+      <if test="settleModel != null">
+        settle_model,
+      </if>
+      <if test="apiUrl != null">
+        api_url,
+      </if>
+      <if test="businessModel != null">
+        business_model,
+      </if>
+      <if test="alarmFrequency != null">
+        alarm_frequency,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="tenantId != null">
+        #{tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="readDecimalDigit != null">
+        #{readDecimalDigit,jdbcType=VARCHAR},
+      </if>
+      <if test="settleModel != null">
+        #{settleModel,jdbcType=VARCHAR},
+      </if>
+      <if test="apiUrl != null">
+        #{apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="businessModel != null">
+        #{businessModel,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmFrequency != null">
+        #{alarmFrequency,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tenant_parameter
+    <set>
+      <if test="record.tenantId != null">
+        tenant_ID = #{record.tenantId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.readDecimalDigit != null">
+        read_decimal_digit = #{record.readDecimalDigit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.settleModel != null">
+        settle_model = #{record.settleModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.apiUrl != null">
+        api_url = #{record.apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessModel != null">
+        business_model = #{record.businessModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.alarmFrequency != null">
+        alarm_frequency = #{record.alarmFrequency,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tenant_parameter
+    set tenant_ID = #{record.tenantId,jdbcType=VARCHAR},
+      read_decimal_digit = #{record.readDecimalDigit,jdbcType=VARCHAR},
+      settle_model = #{record.settleModel,jdbcType=VARCHAR},
+      api_url = #{record.apiUrl,jdbcType=VARCHAR},
+      business_model = #{record.businessModel,jdbcType=VARCHAR},
+      alarm_frequency = #{record.alarmFrequency,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cyneck.zero.entry.model.pojo.TenantParameter">
+    update tenant_parameter
+    <set>
+      <if test="readDecimalDigit != null">
+        read_decimal_digit = #{readDecimalDigit,jdbcType=VARCHAR},
+      </if>
+      <if test="settleModel != null">
+        settle_model = #{settleModel,jdbcType=VARCHAR},
+      </if>
+      <if test="apiUrl != null">
+        api_url = #{apiUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="businessModel != null">
+        business_model = #{businessModel,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmFrequency != null">
+        alarm_frequency = #{alarmFrequency,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where tenant_ID = #{tenantId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cyneck.zero.entry.model.pojo.TenantParameter">
+    update tenant_parameter
+    set read_decimal_digit = #{readDecimalDigit,jdbcType=VARCHAR},
+      settle_model = #{settleModel,jdbcType=VARCHAR},
+      api_url = #{apiUrl,jdbcType=VARCHAR},
+      business_model = #{businessModel,jdbcType=VARCHAR},
+      alarm_frequency = #{alarmFrequency,jdbcType=VARCHAR}
+    where tenant_ID = #{tenantId,jdbcType=VARCHAR}
+  </update>
+</mapper>
