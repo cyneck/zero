@@ -1,6 +1,8 @@
 package com.cyneck.zero.entry.model.pojo;
 
 import com.cyneck.zero.common.model.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,12 +17,16 @@ public class Tenant extends BaseEntity implements Serializable {
 
     private String contactName;
 
+    @JsonIgnore
     private String createStaffId;
 
+    @JsonIgnore
     private Date createTime;
 
+    @JsonIgnore
     private String modifyStaffId;
 
+    @JsonIgnore
     private Date modifyTime;
 
     private String domainName;

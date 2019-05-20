@@ -3,13 +3,12 @@ package com.cyneck.zero.entry.controller;
 import com.cyneck.zero.common.model.ApiResponse;
 import com.cyneck.zero.entry.model.condition.TenantCondition;
 import com.cyneck.zero.entry.model.pojo.Tenant;
+import com.cyneck.zero.entry.model.pojo.TenantExample;
+import com.cyneck.zero.entry.model.vo.TenantVo;
 import com.cyneck.zero.entry.service.TenantService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,17 +28,18 @@ public class TenantController {
     @Resource
     TenantService tenantService;
 
-    @ApiOperation(value = "addTenant", notes = "新增租户")
-    @RequestMapping(value = "addTenant", method = RequestMethod.POST)
-    public ApiResponse addTenant(@RequestBody Tenant tenant) {
-        int num = tenantService.addTenant(tenant);
+
+    @ApiOperation(value = "test", notes = "保存租户信息")
+    @RequestMapping(value = "test", method = RequestMethod.POST)
+    public ApiResponse test(@RequestBody TenantVo tenantVo) {
+        int num = tenantService.testTenantVo(tenantVo);
         return ApiResponse.Success(num);
     }
 
-    @ApiOperation(value = "updateTenant", notes = "修改租户信息")
-    @RequestMapping(value = "updateTenant", method = RequestMethod.POST)
-    public ApiResponse updateTenant(@RequestBody Tenant tenant) {
-        int num = tenantService.modifyTenant(tenant);
+    @ApiOperation(value = "saveTenant", notes = "保存租户信息")
+    @RequestMapping(value = "saveTenant", method = RequestMethod.POST)
+    public ApiResponse addTenantVo(@RequestBody TenantVo tenantVo) {
+        int num = tenantService.saveTenantVo(tenantVo);
         return ApiResponse.Success(num);
     }
 
@@ -47,15 +47,17 @@ public class TenantController {
     @ApiOperation(value = "getList", notes = "获取列表")
     @RequestMapping(value = "getList", method = RequestMethod.POST)
     public ApiResponse getList(@RequestBody TenantCondition condition) {
+        TenantExample tenantExample = new TenantExample();
+        tenantExample.createCriteria();
         List<Tenant> tenantList = tenantService.getTenantList(condition);
         return ApiResponse.Success(tenantList);
     }
 
     @ApiOperation(value = "getDetail", notes = "获取详情")
     @RequestMapping(value = "getDetail", method = RequestMethod.GET)
-    public ApiResponse getDetail(String tenantId) {
-        Tenant tenant = tenantService.getTenantDetail(tenantId);
-        return ApiResponse.Success(tenant);
+    public ApiResponse getDetail(@RequestParam(value = "tenantId") String tenantId) {
+        TenantVo tenantVo = tenantService.getTenantVoDetail(tenantId);
+        return ApiResponse.Success(tenantVo);
     }
 
 }

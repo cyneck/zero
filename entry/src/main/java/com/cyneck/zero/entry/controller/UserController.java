@@ -1,5 +1,6 @@
 package com.cyneck.zero.entry.controller;
 
+import com.cyneck.zero.common.model.ApiResponse;
 import com.cyneck.zero.common.model.PageEntity;
 import com.cyneck.zero.entry.dao.UserAnoDao;
 import com.cyneck.zero.entry.dao.UserDao;
@@ -50,8 +51,8 @@ public class UserController {
     @ApiOperation(value = "getAll", notes = "简单SpringMVC请求")
     @RequestMapping(value = "getAll", method = RequestMethod.GET)
     public List<User> getAll(HttpServletResponse response,
-                            @RequestParam(name = "id", required = false)
-                            @NotBlank(message = "id不能为空") String id) {
+                             @RequestParam(name = "id", required = false)
+                             @NotBlank(message = "id不能为空") String id) {
         List<User> userList = userAnoDao.getAll();
         return userList;
     }

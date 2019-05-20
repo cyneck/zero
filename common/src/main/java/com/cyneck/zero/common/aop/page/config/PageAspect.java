@@ -50,7 +50,7 @@ public class PageAspect {
         /*获得 request */
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 
-        PageHelper.startPage(condition.getPageNum(),condition.getPageSize());
+        PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
 
     }
 

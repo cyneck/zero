@@ -9,9 +9,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.interceptor.DefaultTransactionAttribute;
-import org.springframework.transaction.interceptor.NameMatchTransactionAttributeSource;
-import org.springframework.transaction.interceptor.TransactionInterceptor;
+import org.springframework.transaction.interceptor.*;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Eric Lee
@@ -20,41 +22,73 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
  * @Description : TODO
  * @Create on : 2019/5/15 14:25
  **/
-@Aspect
 @Configuration
+@Aspect
 public class TransactionAdviceConfig {
 
-    private static final String AOP_POINTCUT_EXPRESSION = "execution(* com.***.service..*.*(..))";
+    //写事务的超时时间为10秒
+    private static final int TX_METHOD_TIMEOUT = 10;
+
+    //zero包下所有service包或者service的子包的任意类的任意方法
+    private static final String AOP_POINTCUT_EXPRESSION = "execution (* com.cyneck.zero..*.service..*.*(..))";
 
     @Autowired
-    private PlatformTransactionManager transactionManager;
+    private PlatformTransactionManager  transactionManager;
 
     @Bean
-    public TransactionInterceptor txAdvice() {
+    public TransactionInterceptor  txAdvice() {
 
-        DefaultTransactionAttribute transactionAttr_REQUIRED = new DefaultTransactionAttribute();
-        transactionAttr_REQUIRED.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+        /**
+         * 配置只读事务
+         */
+        RuleBasedTransactionAttribute readOnlyTx = new RuleBasedTransactionAttribute();
+        readOnlyTx.setReadOnly(true);
+        readOnlyTx.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
 
-        DefaultTransactionAttribute transactionAttr_REQUIRED_READONLY = new DefaultTransactionAttribute();
-        transactionAttr_REQUIRED_READONLY.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-        transactionAttr_REQUIRED_READONLY.setReadOnly(true);
+
+        /**
+         * 必须带事务
+         * 当前存在事务就使用当前事务，当前不存在事务,就开启一个新的事务
+         */
+        RuleBasedTransactionAttribute requiredTx = new RuleBasedTransactionAttribute();
+        //检查型异常也回滚
+        requiredTx.setRollbackRules(Collections.singletonList(new RollbackRuleAttribute(Exception.class)));
+        requiredTx.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+        requiredTx.setTimeout(TX_METHOD_TIMEOUT);
+
+        //检查型异常也回滚
+        requiredTx.setRollbackRules(Collections.singletonList(new RollbackRuleAttribute(Exception.class)));
+        requiredTx.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+        requiredTx.setTimeout(TX_METHOD_TIMEOUT);
+
+        /***
+         * 无事务地执行，挂起任何存在的事务
+         */
+        RuleBasedTransactionAttribute noTx = new RuleBasedTransactionAttribute();
+        noTx.setPropagationBehavior(TransactionDefinition.PROPAGATION_NOT_SUPPORTED);
+
+        Map<String, TransactionAttribute> txMap = new HashMap<>();
+        //只读事务
+        txMap.put("get*", readOnlyTx);
+        txMap.put("query*", readOnlyTx);
+        txMap.put("find*", readOnlyTx);
+        txMap.put("list*", readOnlyTx);
+        txMap.put("count*", readOnlyTx);
+        txMap.put("exist*", readOnlyTx);
+        txMap.put("search*", readOnlyTx);
+        txMap.put("fetch*", readOnlyTx);
+        //无事务
+        txMap.put("noTx*", noTx);
+        //写事务
+        txMap.put("add*", requiredTx);
+        txMap.put("save*", requiredTx);
+        txMap.put("insert*", requiredTx);
+        txMap.put("update*", requiredTx);
+        txMap.put("modify*", requiredTx);
+        txMap.put("delete*", requiredTx);
 
         NameMatchTransactionAttributeSource source = new NameMatchTransactionAttributeSource();
-
-        source.addTransactionalMethod("save*", transactionAttr_REQUIRED);
-        source.addTransactionalMethod("add*", transactionAttr_REQUIRED);
-        source.addTransactionalMethod("insert*", transactionAttr_REQUIRED);
-        source.addTransactionalMethod("delete*", transactionAttr_REQUIRED);
-        source.addTransactionalMethod("update*", transactionAttr_REQUIRED);
-        source.addTransactionalMethod("exec*", transactionAttr_REQUIRED);
-        source.addTransactionalMethod("set*", transactionAttr_REQUIRED);
-
-        source.addTransactionalMethod("get*", transactionAttr_REQUIRED_READONLY);
-        source.addTransactionalMethod("query*", transactionAttr_REQUIRED_READONLY);
-        source.addTransactionalMethod("find*", transactionAttr_REQUIRED_READONLY);
-        source.addTransactionalMethod("list*", transactionAttr_REQUIRED_READONLY);
-        source.addTransactionalMethod("count*", transactionAttr_REQUIRED_READONLY);
-        source.addTransactionalMethod("is*", transactionAttr_REQUIRED_READONLY);
+        source.setNameMap(txMap);
 
         return new TransactionInterceptor(transactionManager, source);
     }

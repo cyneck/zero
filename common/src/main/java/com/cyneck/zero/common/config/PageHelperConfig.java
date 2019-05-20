@@ -27,8 +27,8 @@ public class PageHelperConfig {
         properties.setProperty("offsetAsPageNum", "true");
         properties.setProperty("rowBoundsWithCount", "true");
         properties.setProperty("reasonable", "true");
-        properties.setProperty("supportMethodsArguments","true");
-        properties.setProperty("params","count=countSql");
+        properties.setProperty("supportMethodsArguments", "true");
+        properties.setProperty("params", "count=countSql");
         pageHelper.setProperties(properties);
         return pageHelper;
     }

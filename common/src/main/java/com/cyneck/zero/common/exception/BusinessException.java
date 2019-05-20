@@ -8,7 +8,7 @@ package com.cyneck.zero.common.exception;
  * @Create on : 2019/5/8 15:48
  **/
 public class BusinessException extends RuntimeException {
-    public BusinessException(String message){
+    public BusinessException(String message) {
         super(message);
     }
 }

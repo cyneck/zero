@@ -3,8 +3,10 @@ package com.cyneck.zero.entry.mapper;
 import com.cyneck.zero.entry.model.condition.TenantCondition;
 import com.cyneck.zero.entry.model.pojo.Tenant;
 import com.cyneck.zero.entry.model.pojo.TenantExample;
+
 import java.util.List;
 
+import com.cyneck.zero.entry.model.vo.TenantVo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,6 +22,8 @@ public interface TenantMapper {
     List<Tenant> selectByExample(TenantExample example);
 
     Tenant selectByPrimaryKey(String tenantId);
+
+    TenantVo selectById(String tenantId);
 
     int updateByExampleSelective(@Param("record") Tenant record, @Param("example") TenantExample example);
 

@@ -1,6 +1,7 @@
 package com.cyneck.zero.entry.model.pojo;
 
 import com.cyneck.zero.common.model.BaseEntity;
+
 import java.io.Serializable;
 
 public class TenantParameter extends BaseEntity implements Serializable {

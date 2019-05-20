@@ -1,5 +1,6 @@
 package com.cyneck.zero.common.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -23,9 +24,11 @@ public class BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @Column(name = "CreateDate")
     private Date createDate;
 
+    @JsonIgnore
     @Column(name = "UpdateDate", updatable = true)
     private Date updateDate;
 

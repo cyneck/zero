@@ -86,10 +86,10 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    tenant_id, organ_code, company_name, state, contact_name, create_staff_id, create_time, 
-    modify_staff_id, modify_time, domain_name, tname_short, begin_date, end_date, contact_phone, 
-    logo_path, welcome_info, sale_cust_name, sale_tax_id_number, sale_open_bank, sale_addr_and_tel
-  </sql>
+        tenant_id, organ_code, company_name, state, contact_name, create_staff_id, create_time,
+        modify_staff_id, modify_time, domain_name, tname_short, begin_date, end_date, contact_phone,
+        logo_path, welcome_info, sale_cust_name, sale_tax_id_number, sale_open_bank, sale_addr_and_tel
+    </sql>
     <select id="selectByExample" parameterType="com.cyneck.zero.entry.model.pojo.TenantExample"
             resultMap="BaseResultMap">
         select
@@ -115,9 +115,10 @@
     <select id="selectByCondition" resultType="com.cyneck.zero.entry.model.pojo.Tenant">
         select * from tenant
     </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tenant
-    where tenant_id = #{tenantId,jdbcType=VARCHAR}
+        delete from tenant
+        where tenant_id = #{tenantId,jdbcType=VARCHAR}
     </delete>
     <delete id="deleteByExample" parameterType="com.cyneck.zero.entry.model.pojo.TenantExample">
         delete from tenant
@@ -126,21 +127,21 @@
         </if>
     </delete>
     <insert id="insert" parameterType="com.cyneck.zero.entry.model.pojo.Tenant">
-    insert into tenant (tenant_id, organ_code, company_name, 
-      state, contact_name, create_staff_id, 
-      create_time, modify_staff_id, modify_time, 
-      domain_name, tname_short, begin_date, 
-      end_date, contact_phone, logo_path, 
-      welcome_info, sale_cust_name, sale_tax_id_number, 
-      sale_open_bank, sale_addr_and_tel)
-    values (#{tenantId,jdbcType=VARCHAR}, #{organCode,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
-      #{state,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{createStaffId,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{modifyStaffId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
-      #{domainName,jdbcType=VARCHAR}, #{tnameShort,jdbcType=VARCHAR}, #{beginDate,jdbcType=TIMESTAMP}, 
-      #{endDate,jdbcType=TIMESTAMP}, #{contactPhone,jdbcType=VARCHAR}, #{logoPath,jdbcType=VARCHAR}, 
-      #{welcomeInfo,jdbcType=VARCHAR}, #{saleCustName,jdbcType=VARCHAR}, #{saleTaxIdNumber,jdbcType=VARCHAR}, 
-      #{saleOpenBank,jdbcType=VARCHAR}, #{saleAddrAndTel,jdbcType=VARCHAR})
-  </insert>
+        insert into tenant (tenant_id, organ_code, company_name,
+        state, contact_name, create_staff_id,
+        create_time, modify_staff_id, modify_time,
+        domain_name, tname_short, begin_date,
+        end_date, contact_phone, logo_path,
+        welcome_info, sale_cust_name, sale_tax_id_number,
+        sale_open_bank, sale_addr_and_tel)
+        values (#{tenantId,jdbcType=VARCHAR}, #{organCode,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR},
+        #{state,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{createStaffId,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{modifyStaffId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP},
+        #{domainName,jdbcType=VARCHAR}, #{tnameShort,jdbcType=VARCHAR}, #{beginDate,jdbcType=TIMESTAMP},
+        #{endDate,jdbcType=TIMESTAMP}, #{contactPhone,jdbcType=VARCHAR}, #{logoPath,jdbcType=VARCHAR},
+        #{welcomeInfo,jdbcType=VARCHAR}, #{saleCustName,jdbcType=VARCHAR}, #{saleTaxIdNumber,jdbcType=VARCHAR},
+        #{saleOpenBank,jdbcType=VARCHAR}, #{saleAddrAndTel,jdbcType=VARCHAR})
+    </insert>
     <insert id="insertSelective" parameterType="com.cyneck.zero.entry.model.pojo.Tenant">
         insert into tenant
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -426,26 +427,26 @@
         where tenant_id = #{tenantId,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.cyneck.zero.entry.model.pojo.Tenant">
-    update tenant
-    set organ_code = #{organCode,jdbcType=VARCHAR},
-      company_name = #{companyName,jdbcType=VARCHAR},
-      state = #{state,jdbcType=VARCHAR},
-      contact_name = #{contactName,jdbcType=VARCHAR},
-      create_staff_id = #{createStaffId,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      modify_staff_id = #{modifyStaffId,jdbcType=VARCHAR},
-      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      domain_name = #{domainName,jdbcType=VARCHAR},
-      tname_short = #{tnameShort,jdbcType=VARCHAR},
-      begin_date = #{beginDate,jdbcType=TIMESTAMP},
-      end_date = #{endDate,jdbcType=TIMESTAMP},
-      contact_phone = #{contactPhone,jdbcType=VARCHAR},
-      logo_path = #{logoPath,jdbcType=VARCHAR},
-      welcome_info = #{welcomeInfo,jdbcType=VARCHAR},
-      sale_cust_name = #{saleCustName,jdbcType=VARCHAR},
-      sale_tax_id_number = #{saleTaxIdNumber,jdbcType=VARCHAR},
-      sale_open_bank = #{saleOpenBank,jdbcType=VARCHAR},
-      sale_addr_and_tel = #{saleAddrAndTel,jdbcType=VARCHAR}
-    where tenant_id = #{tenantId,jdbcType=VARCHAR}
-  </update>
+        update tenant
+        set organ_code = #{organCode,jdbcType=VARCHAR},
+        company_name = #{companyName,jdbcType=VARCHAR},
+        state = #{state,jdbcType=VARCHAR},
+        contact_name = #{contactName,jdbcType=VARCHAR},
+        create_staff_id = #{createStaffId,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        modify_staff_id = #{modifyStaffId,jdbcType=VARCHAR},
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+        domain_name = #{domainName,jdbcType=VARCHAR},
+        tname_short = #{tnameShort,jdbcType=VARCHAR},
+        begin_date = #{beginDate,jdbcType=TIMESTAMP},
+        end_date = #{endDate,jdbcType=TIMESTAMP},
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+        logo_path = #{logoPath,jdbcType=VARCHAR},
+        welcome_info = #{welcomeInfo,jdbcType=VARCHAR},
+        sale_cust_name = #{saleCustName,jdbcType=VARCHAR},
+        sale_tax_id_number = #{saleTaxIdNumber,jdbcType=VARCHAR},
+        sale_open_bank = #{saleOpenBank,jdbcType=VARCHAR},
+        sale_addr_and_tel = #{saleAddrAndTel,jdbcType=VARCHAR}
+        where tenant_id = #{tenantId,jdbcType=VARCHAR}
+    </update>
 </mapper>

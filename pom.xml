@@ -27,6 +27,7 @@
         <zero.version>1.0.0-SNAPSHOT</zero.version>
         <mapper.starter.version>2.1.5</mapper.starter.version>
         <pagehelper.starter.version>1.2.10</pagehelper.starter.version>
+        <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
     </properties>
 
     <repositories>
@@ -58,6 +59,14 @@
                 <groupId>com.cyneck.zero</groupId>
                 <artifactId>zero-entry</artifactId>
                 <version>${zero.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
         </dependencies>

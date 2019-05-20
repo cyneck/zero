@@ -4,11 +4,9 @@ import com.cyneck.zero.common.model.ApiResponse;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -21,8 +19,8 @@ import javax.servlet.http.HttpServletRequest;
  * @Description : 使用切面的方式制定异常处理逻辑
  * @Create on : 2019/5/10 18:04
  **/
-@Component
-@Aspect
+//@Component
+//@Aspect
 public class ExceptionAspectHandler {
 
     public static final Logger logger = LoggerFactory.getLogger(ExceptionAspectHandler.class);

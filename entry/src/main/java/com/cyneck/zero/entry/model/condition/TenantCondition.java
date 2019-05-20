@@ -51,4 +51,6 @@ public class TenantCondition extends BaseCondition {
     private String saleOpenBank;
 
     private String saleAddrAndTel;
+
+
 }
