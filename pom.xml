@@ -81,6 +81,12 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>mchange-commons-java</artifactId>
+            <version>0.2.7</version>
+        </dependency>
+
         <!--mybatis-spring-boot集成-->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
