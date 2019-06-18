@@ -3,10 +3,7 @@ package com.cyneck.zero.entry.dao;
 import com.cyneck.zero.entry.model.User;
 import com.cyneck.zero.entry.model.condition.UserCondition;
 import com.github.pagehelper.Page;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.ResultType;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.Alias;
 
 import java.util.List;
@@ -19,7 +16,9 @@ import java.util.List;
  * @Create on : 2019/5/9 10:53
  **/
 
+
 @Alias("daoUserMapper")
+@Mapper
 public interface UserMapper extends BaseMapper<User> {
 
     @Select("insert into user (name) values (#{name})")

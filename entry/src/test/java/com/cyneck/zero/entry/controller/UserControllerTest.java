@@ -5,6 +5,7 @@ import com.cyneck.zero.entry.ApplicationEntry;
 import com.cyneck.zero.entry.model.condition.UserCondition;
 import com.cyneck.zero.entry.service.UserService;
 import com.github.pagehelper.Page;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +16,6 @@ import javax.annotation.Resource;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Import(ApplicationEntry.class)
 public class UserControllerTest {
 
     @Resource
@@ -29,6 +29,6 @@ public class UserControllerTest {
         condition.setOrderField("name");
         condition.setOrderDirection("desc");
         PageEntity page = userService.getPageByCondition(condition);
-        userService.getPageByCondition(condition);
+        Assert.assertTrue(page.getTotal() != 0);
     }
 }
