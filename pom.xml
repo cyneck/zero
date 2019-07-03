@@ -16,6 +16,41 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+            <url>https://github.com/cyneck/zero/blob/master/LICENSE</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>cyneck</name>
+            <email>li114228@126.com</email>
+        </developer>
+    </developers>
+
+    <distributionManagement>
+        <repository>
+            <id>release</id>
+            <name>Internal Release</name>
+            <url>http://192.168.48.130:18081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Internal Snapshots</name>
+            <url>http://192.168.48.130:18081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+
+    <scm>
+        <!--代码仓库-->
+        <connection>scm:git:https://github.com/cyneck/zero.git</connection>
+        <developerConnection>scm:git:https://github.com/cyneck/zero.git</developerConnection>
+        <url>https://github.com/cyneck/zero.git</url>
+    </scm>
+
     <!--多module管理-->
     <modules>
         <module>common</module>
@@ -27,7 +62,9 @@
         <swagger.version>2.2.2</swagger.version>
         <zero.version>1.0.0-SNAPSHOT</zero.version>
         <mapper.starter.version>2.1.5</mapper.starter.version>
+        <mapper-spring-boot-starter>2.1.5</mapper-spring-boot-starter>
         <pagehelper.starter.version>1.2.10</pagehelper.starter.version>
+        <mybatis-spring-boot-starter>2.0.1</mybatis-spring-boot-starter>
     </properties>
 
     <repositories>
@@ -45,6 +82,18 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Repository</name>
+            <url>http://192.168.48.130:18081/repository/maven-snapshots/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases> <!--snapshots默认是关闭的,需要开启  -->
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
     </repositories>
 
     <!-- 各个module下各自maven依赖管理 -->
@@ -69,6 +118,28 @@
                 <scope>import</scope>
             </dependency>
 
+
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybatis-spring-boot-starter}</version>
+            </dependency>
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${mapper.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-autoconfigure</artifactId>
+                <version>${pagehelper.starter.version}</version>
+            </dependency>
+
         </dependencies>
 
     </dependencyManagement>
@@ -85,7 +156,7 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>2.0.1</version>
+            <version>${mybatis-spring-boot-starter}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/tk.mybatis/mapper-spring-boot-starter -->
@@ -122,7 +193,6 @@
 
     </dependencies>
 
-
     <!--多环境管理-->
     <profiles>
         <profile>
@@ -150,6 +220,7 @@
 
     <build>
         <plugins>
+            <!--Maven自动构建-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -161,6 +232,30 @@
                 </configuration>
             </plugin>
 
+            <!--自动部署到私服仓库-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-scm-plugin</artifactId>
+                <version>1.11.2</version>
+                <configuration>
+                    <goals>install</goals>
+                </configuration>
+            </plugin>
+
+            <!--自动化项目版本发布-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <tagBase>https://github.com/cyneck/zero.git</tagBase>
+                    <connectionUrl>https://github.com/cyneck/zero.git</connectionUrl>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <preparationGoals>clean deploy</preparationGoals>
+                </configuration>
+
+            </plugin>
         </plugins>
 
     </build>

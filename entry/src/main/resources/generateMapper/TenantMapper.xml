@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cyneck.zero.entry.mapper.TenantMapper">
+  <resultMap id="BaseResultMap" type="com.cyneck.zero.entry.model.pojo.Tenant">
+    <id column="tenant_id" jdbcType="VARCHAR" property="tenantId" />
+    <result column="organ_code" jdbcType="VARCHAR" property="organCode" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="contact_name" jdbcType="VARCHAR" property="contactName" />
+    <result column="create_staff_id" jdbcType="VARCHAR" property="createStaffId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_staff_id" jdbcType="VARCHAR" property="modifyStaffId" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+    <result column="domain_name" jdbcType="VARCHAR" property="domainName" />
+    <result column="tname_short" jdbcType="VARCHAR" property="tnameShort" />
+    <result column="begin_date" jdbcType="TIMESTAMP" property="beginDate" />
+    <result column="end_date" jdbcType="TIMESTAMP" property="endDate" />
+    <result column="contact_phone" jdbcType="VARCHAR" property="contactPhone" />
+    <result column="logo_path" jdbcType="VARCHAR" property="logoPath" />
+    <result column="welcome_info" jdbcType="VARCHAR" property="welcomeInfo" />
+    <result column="sale_cust_name" jdbcType="VARCHAR" property="saleCustName" />
+    <result column="sale_tax_id_number" jdbcType="VARCHAR" property="saleTaxIdNumber" />
+    <result column="sale_open_bank" jdbcType="VARCHAR" property="saleOpenBank" />
+    <result column="sale_addr_and_tel" jdbcType="VARCHAR" property="saleAddrAndTel" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tenant
+    where tenant_id = #{tenantId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cyneck.zero.entry.model.pojo.Tenant">
+    insert into tenant (tenant_id, organ_code, company_name, 
+      state, contact_name, create_staff_id, 
+      create_time, modify_staff_id, modify_time, 
+      domain_name, tname_short, begin_date, 
+      end_date, contact_phone, logo_path, 
+      welcome_info, sale_cust_name, sale_tax_id_number, 
+      sale_open_bank, sale_addr_and_tel)
+    values (#{tenantId,jdbcType=VARCHAR}, #{organCode,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{createStaffId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyStaffId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{domainName,jdbcType=VARCHAR}, #{tnameShort,jdbcType=VARCHAR}, #{beginDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{contactPhone,jdbcType=VARCHAR}, #{logoPath,jdbcType=VARCHAR}, 
+      #{welcomeInfo,jdbcType=VARCHAR}, #{saleCustName,jdbcType=VARCHAR}, #{saleTaxIdNumber,jdbcType=VARCHAR}, 
+      #{saleOpenBank,jdbcType=VARCHAR}, #{saleAddrAndTel,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cyneck.zero.entry.model.pojo.Tenant">
+    update tenant
+    set organ_code = #{organCode,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      create_staff_id = #{createStaffId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_staff_id = #{modifyStaffId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      domain_name = #{domainName,jdbcType=VARCHAR},
+      tname_short = #{tnameShort,jdbcType=VARCHAR},
+      begin_date = #{beginDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      logo_path = #{logoPath,jdbcType=VARCHAR},
+      welcome_info = #{welcomeInfo,jdbcType=VARCHAR},
+      sale_cust_name = #{saleCustName,jdbcType=VARCHAR},
+      sale_tax_id_number = #{saleTaxIdNumber,jdbcType=VARCHAR},
+      sale_open_bank = #{saleOpenBank,jdbcType=VARCHAR},
+      sale_addr_and_tel = #{saleAddrAndTel,jdbcType=VARCHAR}
+    where tenant_id = #{tenantId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select tenant_id, organ_code, company_name, state, contact_name, create_staff_id, 
+    create_time, modify_staff_id, modify_time, domain_name, tname_short, begin_date, 
+    end_date, contact_phone, logo_path, welcome_info, sale_cust_name, sale_tax_id_number, 
+    sale_open_bank, sale_addr_and_tel
+    from tenant
+    where tenant_id = #{tenantId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select tenant_id, organ_code, company_name, state, contact_name, create_staff_id, 
+    create_time, modify_staff_id, modify_time, domain_name, tname_short, begin_date, 
+    end_date, contact_phone, logo_path, welcome_info, sale_cust_name, sale_tax_id_number, 
+    sale_open_bank, sale_addr_and_tel
+    from tenant
+  </select>
+  <resultMap id="BaseResultMap" type="com.cyneck.zero.entry.model.pojo.Tenant">
+    <constructor>
+      <idArg column="tenant_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="organ_code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="company_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="state" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="contact_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_staff_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="modify_staff_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="modify_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="domain_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tname_short" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="begin_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="end_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="contact_phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="logo_path" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="welcome_info" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sale_cust_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sale_tax_id_number" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sale_open_bank" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sale_addr_and_tel" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tenant
+    where tenant_id = #{tenantId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cyneck.zero.entry.model.pojo.Tenant">
+    insert into tenant (tenant_id, organ_code, company_name, 
+      state, contact_name, create_staff_id, 
+      create_time, modify_staff_id, modify_time, 
+      domain_name, tname_short, begin_date, 
+      end_date, contact_phone, logo_path, 
+      welcome_info, sale_cust_name, sale_tax_id_number, 
+      sale_open_bank, sale_addr_and_tel)
+    values (#{tenantId,jdbcType=VARCHAR}, #{organCode,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR}, #{contactName,jdbcType=VARCHAR}, #{createStaffId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifyStaffId,jdbcType=VARCHAR}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{domainName,jdbcType=VARCHAR}, #{tnameShort,jdbcType=VARCHAR}, #{beginDate,jdbcType=TIMESTAMP}, 
+      #{endDate,jdbcType=TIMESTAMP}, #{contactPhone,jdbcType=VARCHAR}, #{logoPath,jdbcType=VARCHAR}, 
+      #{welcomeInfo,jdbcType=VARCHAR}, #{saleCustName,jdbcType=VARCHAR}, #{saleTaxIdNumber,jdbcType=VARCHAR}, 
+      #{saleOpenBank,jdbcType=VARCHAR}, #{saleAddrAndTel,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cyneck.zero.entry.model.pojo.Tenant">
+    update tenant
+    set organ_code = #{organCode,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      contact_name = #{contactName,jdbcType=VARCHAR},
+      create_staff_id = #{createStaffId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_staff_id = #{modifyStaffId,jdbcType=VARCHAR},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      domain_name = #{domainName,jdbcType=VARCHAR},
+      tname_short = #{tnameShort,jdbcType=VARCHAR},
+      begin_date = #{beginDate,jdbcType=TIMESTAMP},
+      end_date = #{endDate,jdbcType=TIMESTAMP},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      logo_path = #{logoPath,jdbcType=VARCHAR},
+      welcome_info = #{welcomeInfo,jdbcType=VARCHAR},
+      sale_cust_name = #{saleCustName,jdbcType=VARCHAR},
+      sale_tax_id_number = #{saleTaxIdNumber,jdbcType=VARCHAR},
+      sale_open_bank = #{saleOpenBank,jdbcType=VARCHAR},
+      sale_addr_and_tel = #{saleAddrAndTel,jdbcType=VARCHAR}
+    where tenant_id = #{tenantId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select tenant_id, organ_code, company_name, state, contact_name, create_staff_id, 
+    create_time, modify_staff_id, modify_time, domain_name, tname_short, begin_date, 
+    end_date, contact_phone, logo_path, welcome_info, sale_cust_name, sale_tax_id_number, 
+    sale_open_bank, sale_addr_and_tel
+    from tenant
+    where tenant_id = #{tenantId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select tenant_id, organ_code, company_name, state, contact_name, create_staff_id, 
+    create_time, modify_staff_id, modify_time, domain_name, tname_short, begin_date, 
+    end_date, contact_phone, logo_path, welcome_info, sale_cust_name, sale_tax_id_number, 
+    sale_open_bank, sale_addr_and_tel
+    from tenant
+  </select>
+</mapper>

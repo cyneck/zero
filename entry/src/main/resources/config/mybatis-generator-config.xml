@@ -9,7 +9,10 @@
     <properties resource="db.properties"></properties>
 
     <!-- 生成简单版的CRUD：MyBatis3Simple；豪华版：MyBatis3。-->
-    <context id="MyBatisGenerator" targetRuntime="MyBatis3">
+    <context id="MyBatisGenerator"  targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!--配置是否使用通用 Mapper 自带的注释扩展，默认 true-->
+        <!--<property name="useMapperCommentGenerator" value="false"/>-->
 
         <!-- 生成的实体Bean,将实现Serializable -->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
@@ -72,7 +75,7 @@
         <javaModelGenerator targetPackage="com.cyneck.zero.entry.model.pojo"
                             targetProject="src/main/java">
             <!-- 是否对model添加 构造函数 -->
-            <property name="constructorBased" value="true"/>
+            <property name="constructorBased" value="false"/>
             <!-- 是否允许子包，即targetPackage.schemaName.tableName -->
             <property name="enableSubPackages" value="false"/>
             <!-- 给Model添加一个父类 -->
