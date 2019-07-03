@@ -6,7 +6,7 @@
     <groupId>com.cyneck.zero</groupId>
     <artifactId>zero-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -230,14 +230,14 @@
                 </configuration>
             </plugin>
 
-            <!--自动化项目版本发布，发布到nexus私服-->
+            <!--自动化项目release版本发布，发布到nexus私服-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
                 <version>2.5.3</version>
                 <configuration>
-                    <tagBase>https://github.com/cyneck/zero.git</tagBase>
-                    <connectionUrl>https://github.com/cyneck/zero.git</connectionUrl>
+                    <tagBase>${scm.url}</tagBase>
+                    <connectionUrl>${scm.url}</connectionUrl>
                     <useReleaseProfile>false</useReleaseProfile>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <preparationGoals>clean deploy</preparationGoals>
