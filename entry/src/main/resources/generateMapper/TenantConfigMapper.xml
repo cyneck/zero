@@ -50,6 +50,54 @@
     from tenant_config
   </select>
   <resultMap id="BaseResultMap" type="com.cyneck.zero.entry.model.pojo.TenantConfig">
+    <id column="tenant_id" jdbcType="VARCHAR" property="tenantId" />
+    <result column="customize_reset_surplus" jdbcType="CHAR" property="customizeResetSurplus" />
+    <result column="print_repair_receipt" jdbcType="CHAR" property="printRepairReceipt" />
+    <result column="initial_cyc_qty" jdbcType="CHAR" property="initialCycQty" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="time_split_enable" jdbcType="CHAR" property="timeSplitEnable" />
+    <result column="adjust_ladder" jdbcType="CHAR" property="adjustLadder" />
+    <result column="cumulant_report_type" jdbcType="CHAR" property="cumulantReportType" />
+    <result column="cumulant_report_type_writable" jdbcType="CHAR" property="cumulantReportTypeWritable" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tenant_config
+    where tenant_id = #{tenantId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cyneck.zero.entry.model.pojo.TenantConfig">
+    insert into tenant_config (tenant_id, customize_reset_surplus, print_repair_receipt, 
+      initial_cyc_qty, create_time, time_split_enable, 
+      adjust_ladder, cumulant_report_type, cumulant_report_type_writable
+      )
+    values (#{tenantId,jdbcType=VARCHAR}, #{customizeResetSurplus,jdbcType=CHAR}, #{printRepairReceipt,jdbcType=CHAR}, 
+      #{initialCycQty,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{timeSplitEnable,jdbcType=CHAR}, 
+      #{adjustLadder,jdbcType=CHAR}, #{cumulantReportType,jdbcType=CHAR}, #{cumulantReportTypeWritable,jdbcType=CHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cyneck.zero.entry.model.pojo.TenantConfig">
+    update tenant_config
+    set customize_reset_surplus = #{customizeResetSurplus,jdbcType=CHAR},
+      print_repair_receipt = #{printRepairReceipt,jdbcType=CHAR},
+      initial_cyc_qty = #{initialCycQty,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      time_split_enable = #{timeSplitEnable,jdbcType=CHAR},
+      adjust_ladder = #{adjustLadder,jdbcType=CHAR},
+      cumulant_report_type = #{cumulantReportType,jdbcType=CHAR},
+      cumulant_report_type_writable = #{cumulantReportTypeWritable,jdbcType=CHAR}
+    where tenant_id = #{tenantId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select tenant_id, customize_reset_surplus, print_repair_receipt, initial_cyc_qty, 
+    create_time, time_split_enable, adjust_ladder, cumulant_report_type, cumulant_report_type_writable
+    from tenant_config
+    where tenant_id = #{tenantId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select tenant_id, customize_reset_surplus, print_repair_receipt, initial_cyc_qty, 
+    create_time, time_split_enable, adjust_ladder, cumulant_report_type, cumulant_report_type_writable
+    from tenant_config
+  </select>
+  <resultMap id="BaseResultMap" type="com.cyneck.zero.entry.model.pojo.TenantConfig">
     <constructor>
       <idArg column="tenant_id" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="customize_reset_surplus" javaType="java.lang.String" jdbcType="CHAR" />

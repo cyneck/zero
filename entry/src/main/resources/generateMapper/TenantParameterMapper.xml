@@ -40,6 +40,44 @@
     from tenant_parameter
   </select>
   <resultMap id="BaseResultMap" type="com.cyneck.zero.entry.model.pojo.TenantParameter">
+    <id column="tenant_ID" jdbcType="VARCHAR" property="tenantId" />
+    <result column="read_decimal_digit" jdbcType="VARCHAR" property="readDecimalDigit" />
+    <result column="settle_model" jdbcType="VARCHAR" property="settleModel" />
+    <result column="api_url" jdbcType="VARCHAR" property="apiUrl" />
+    <result column="business_model" jdbcType="VARCHAR" property="businessModel" />
+    <result column="alarm_frequency" jdbcType="VARCHAR" property="alarmFrequency" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tenant_parameter
+    where tenant_ID = #{tenantId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.cyneck.zero.entry.model.pojo.TenantParameter">
+    insert into tenant_parameter (tenant_ID, read_decimal_digit, settle_model, 
+      api_url, business_model, alarm_frequency
+      )
+    values (#{tenantId,jdbcType=VARCHAR}, #{readDecimalDigit,jdbcType=VARCHAR}, #{settleModel,jdbcType=VARCHAR}, 
+      #{apiUrl,jdbcType=VARCHAR}, #{businessModel,jdbcType=VARCHAR}, #{alarmFrequency,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cyneck.zero.entry.model.pojo.TenantParameter">
+    update tenant_parameter
+    set read_decimal_digit = #{readDecimalDigit,jdbcType=VARCHAR},
+      settle_model = #{settleModel,jdbcType=VARCHAR},
+      api_url = #{apiUrl,jdbcType=VARCHAR},
+      business_model = #{businessModel,jdbcType=VARCHAR},
+      alarm_frequency = #{alarmFrequency,jdbcType=VARCHAR}
+    where tenant_ID = #{tenantId,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select tenant_ID, read_decimal_digit, settle_model, api_url, business_model, alarm_frequency
+    from tenant_parameter
+    where tenant_ID = #{tenantId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select tenant_ID, read_decimal_digit, settle_model, api_url, business_model, alarm_frequency
+    from tenant_parameter
+  </select>
+  <resultMap id="BaseResultMap" type="com.cyneck.zero.entry.model.pojo.TenantParameter">
     <constructor>
       <idArg column="tenant_ID" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="read_decimal_digit" javaType="java.lang.String" jdbcType="VARCHAR" />
