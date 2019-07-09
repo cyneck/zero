@@ -1,0 +1,10 @@
+language: java
+# safelist
+branches:
+  only:
+    - master
+    - stable
+jdk:
+  - openjdk8
+install: mvn install -DskipTests=true -Dmaven.javadoc.skip=true
+script: mvn test
