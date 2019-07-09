@@ -92,15 +92,16 @@
                         <version>1.3.5</version>
                     </dependency>
                 </dependencies>
-                <executions>
-                    <execution>
-                        <id>Generate MyBatis Artifacts</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
+                <!--执行生命周-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>Generate MyBatis Artifacts</id>-->
+                        <!--<phase>install</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>generate</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
                 <configuration>
                     <!--允许移动生成的文件 -->
                     <verbose>true</verbose>
