@@ -1,6 +1,8 @@
 package com.cyneck.zero.entry.model;
 
+import com.cyneck.zero.common.model.BaseEntity;
 import lombok.Data;
+import org.apache.ibatis.type.Alias;
 
 /**
  * @author Eric Lee
@@ -10,7 +12,7 @@ import lombok.Data;
  * @Create on : 2019/5/9 09:04
  **/
 @Data
-public class User {
-    private Long id;
+@Alias("baseUser")
+public class User extends BaseEntity {
     private String name;
 }
