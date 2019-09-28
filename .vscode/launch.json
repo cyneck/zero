@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - ApplicationEntry",
+            "request": "launch",
+            "mainClass": "com.cyneck.zero.entry.ApplicationEntry",
+            "projectName": "zero-entry"
+        }
+    ]
+}
